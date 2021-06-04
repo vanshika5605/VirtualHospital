@@ -6,7 +6,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>DAppointmentHistory</title>
+    <title>Doctor AppointmentHistory</title>
     <link rel="stylesheet" href="/css/nicepage.css" media="screen">
 <link rel="stylesheet" href="/css/DAppointmentHistory.css" media="screen">
     <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
@@ -32,7 +32,7 @@
           <div class="u-tab-content">
             <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
               <div class="u-container-layout u-container-layout-1">
-                <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                <div class="u-expanded-width u-table u-table-responsive u-table-1" style="height:auto;">
                   <table class="u-table-entity">
                     <colgroup>
                       <col width="10.1%">
@@ -40,9 +40,10 @@
                       <col width="14.3%">
                       <col width="4.3%">
                       <col width="10%">
-                      <col width="14.3%">
-                      <col width="14.500000000000005%">
-                      <col width="13.900000000000006%">
+                      <col width="16.3%">
+                      <col width="10.500000000000005%">
+                      <col width="8.500000000000005%">
+                      <col width="7.900000000000006%">
                     </colgroup>
                     <tbody class="u-custom-font u-font-playfair-display u-table-alt-palette-1-light-3 u-table-body">
                       <tr style="height: 65px;">
@@ -53,6 +54,7 @@
                         <td class="u-table-cell u-table-cell-4">Gender</td>
                         <td class="u-table-cell u-table-cell-5">Appointment Date and Time</td>
                         <td class="u-table-cell u-table-cell-6">Status</td>
+                        <td class="u-table-cell u-table-cell-34">Change Status</td>
                         <td class="u-table-cell u-table-cell-7">Prescription</td>
                       </tr>
                       <tr th:each="appointment: ${upcomingAppointments}" style="height: 65px;">
@@ -62,10 +64,19 @@
                         <td th:text="${appointment.patient_age}" class="u-table-cell">Age</td>
                         <td th:text="${appointment.patient_gender}" class="u-table-cell">Gender</td>
                         <td th:text="${appointment.date}" class="u-table-cell">Date</td>
-                        <td class="u-table-cell">Status</td>
+                        <td th:text="${appointment.status}" class="u-table-cell">Status</td>                        
+                        <td>
+                        <form th:action="@{'/doctor/change-appointment-status/'+${appointment.id}}" method="POST">
+                        	<select name="status" class="u-custom-font u-input u-input-rectangle u-white u-input-5" required>
+			                  <option value="Pending">Pending</option>
+			                  <option value="Completed">Completed</option>
+			                  <option value="Prescription given">Prescription given</option>			                  
+			                </select>
+			                <button type="submit">Change</button>
+                        </form></td>
                         <td class="u-table-cell"><a
-						th:href="@{'/addPrescription/' + ${appointment.id}}">ADD</a>
-						&nbsp;&nbsp;&nbsp;&nbsp; <a 
+						th:href="@{'/doctor/add-prescription/' + ${appointment.id}}">ADD</a>
+						&nbsp; <a 
 						th:href="@{'/viewPrescription/' + ${appointment.id}}">VIEW</a></td>
                       </tr>         
                     </tbody>
@@ -73,18 +84,20 @@
                 </div>
               </div>
             </div>
-            <div class="u-container-style u-tab-pane u-white u-tab-pane-2" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
+            <div class="u-container-style u-tab-pane u-white u-tab-pane-1" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
               <div class="u-container-layout u-container-layout-2">
-                <div class="u-expanded-width u-table u-table-responsive u-table-2">
+                <div class="u-expanded-width u-table u-table-responsive u-table-1" style="height:auto;">
                   <table class="u-table-entity">
                     <colgroup>
+                      <col width="10.1%">
+                      <col width="18.5%">
                       <col width="14.3%">
-                      <col width="14.3%">
-                      <col width="14.3%">
-                      <col width="14.3%">
-                      <col width="14.3%">
-                      <col width="14.500000000000005%">
-                      <col width="13.900000000000006%">
+                      <col width="4.3%">
+                      <col width="10%">
+                      <col width="16.3%">
+                      <col width="10.500000000000005%">
+                      <col width="8.500000000000005%">
+                      <col width="7.900000000000006%">
                     </colgroup>
                     <tbody class="u-custom-font u-font-playfair-display u-table-alt-palette-1-light-3 u-table-body">
                       <tr style="height: 65px;">
@@ -92,8 +105,10 @@
                         <td class="u-table-cell u-table-cell-30">Patient's Name</td>
                         <td class="u-table-cell u-table-cell-31">Symptoms</td>
                         <td class="u-table-cell u-table-cell-32">Age</td>
-                        <td class="u-table-cell u-table-cell-33">Appointment Date</td>
+                        <td class="u-table-cell u-table-cell-4">Gender</td>
+                        <td class="u-table-cell u-table-cell-33">Appointment Date and Time</td>
                         <td class="u-table-cell u-table-cell-34">Status</td>
+                        <td class="u-table-cell u-table-cell-34">Change Status</td>
                         <td class="u-table-cell u-table-cell-35">Prescription</td>
                       </tr>
                       <tr th:each="appointment: ${pastAppointments}" style="height: 65px;">
@@ -101,11 +116,21 @@
                         <td th:text="${appointment.patient_name}" class="u-table-cell">Patient name</td>
                         <td th:text="${appointment.symptoms}" class="u-table-cell">Symptoms</td>
                         <td th:text="${appointment.patient_age}" class="u-table-cell">Age</td>
+                        <td th:text="${appointment.patient_gender}" class="u-table-cell">Gender</td>
                         <td th:text="${appointment.date}" class="u-table-cell">Date</td>
-                        <td class="u-table-cell">Status</td>
+                        <td th:text="${appointment.status}" class="u-table-cell">Status</td>
+                        <td>
+                        <form th:action="@{'/changeAppointmentStatus/'+${appointment.id}}" method="POST">
+                        	<select name="status" class="u-custom-font u-input u-input-rectangle u-white u-input-5" required>
+			                  <option value="Pending">Pending</option>
+			                  <option value="Completed">Completed</option>
+			                  <option value="Prescription given">Prescription given</option>			                  
+			                </select>
+			                <button type="submit">Change</button>
+                        </form></td>
                         <td class="u-table-cell"><a
 						th:href="@{'/addPrescription/' + ${appointment.id}}">ADD</a>
-						&nbsp;&nbsp;&nbsp;&nbsp; <a 
+						&nbsp; <a 
 						th:href="@{'/viewPrescription/' + ${appointment.id}}">VIEW</a></td>
                       </tr>                        
                     </tbody>

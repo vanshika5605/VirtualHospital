@@ -36,11 +36,11 @@
 						href="/login" style="padding: 10px 0px;">Login</a></li>
 					<li sec:authorize="hasAuthority('PATIENT')" class="u-nav-item"><a
 						class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-white u-text-white"
-						href="/patientDashboard" style="padding: 10px 0px;">Dashboard-P</a>
+						href="/patient/dashboard" style="padding: 10px 0px;">Dashboard-P</a>
 					</li>
 					<li sec:authorize="hasAuthority('DOCTOR')" class="u-nav-item"><a
 						class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-white u-text-white"
-						href="/doctorDashboard" style="padding: 10px 0px;">Dashboard-D</a>
+						href="/doctor/dashboard" style="padding: 10px 0px;">Dashboard-D</a>
 					</li>
 					<li sec:authorize="isAuthenticated()" class="u-nav-item"><a
 						class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-white u-text-white"
@@ -61,10 +61,10 @@
 							<li sec:authorize="!isAuthenticated()" class="u-nav-item"><a class="u-button-style u-nav-link"
 								href="/login" style="padding: 10px 0px;">Login</a></li>
 							<li sec:authorize="hasAuthority('PATIENT')" class="u-nav-item"><a
-								class="u-button-style u-nav-link" href="/patientDashboard"
+								class="u-button-style u-nav-link" href="/patient/dashboard"
 								style="padding: 10px 0px;">Dashboard-P</a></li>
 							<li sec:authorize="hasAuthority('DOCTOR')" class="u-nav-item"><a
-								class="u-button-style u-nav-link" href="/doctorDashboard"
+								class="u-button-style u-nav-link" href="/doctor/dashboard"
 								style="padding: 10px 0px;">Dashboard-D</a></li>
 							<li sec:authorize="isAuthenticated()" class="u-nav-item"><a
 								class="u-button-style u-nav-link" href="/logout"

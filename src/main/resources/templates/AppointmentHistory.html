@@ -32,15 +32,16 @@
           <div class="u-tab-content">
             <div class="u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
               <div class="u-container-layout u-container-layout-1">
-                <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                <div class="u-expanded-width u-table u-table-responsive u-table-1" style="height:auto;">
                   <table class="u-table-entity">
                     <colgroup>
+                      <col width="10.6%">
                       <col width="16.6%">
                       <col width="16.6%">
-                      <col width="16.6%">
-                      <col width="16.6%">
+                      <col width="12.6%">
                       <col width="16.6%">
                       <col width="17%">
+                      <col width="10%">
                     </colgroup>
                     <tbody class="u-custom-font u-font-playfair-display u-table-alt-palette-1-light-3 u-table-body">
                       <tr style="height: 65px;">
@@ -50,6 +51,7 @@
                         <td class="u-table-cell u-table-cell-4">Department</td>
                         <td class="u-table-cell u-table-cell-5">Appointment Date and Time</td>
                         <td class="u-table-cell u-table-cell-6">Status</td>
+                        <td class="u-table-cell u-table-cell-6">Call Link</td>
                       </tr>
                       <tr th:each="appointment: ${upcomingAppointments}" style="height:65px;">
                         <td th:text="${appointment.id}" class="u-table-cell">Id</td>
@@ -57,7 +59,9 @@
                         <td th:text="${appointment.name}" class="u-table-cell">Description</td>
                         <td th:text="${appointment.department}" class="u-table-cell">Description</td>
                         <td th:text="${appointment.date}" class="u-table-cell">Date</td>
-                        <td class="u-table-cell"></td>
+                        <td th:text="${appointment.status}" class="u-table-cell"></td>
+                        <td class="u-table-cell"><a
+						th:href="@{/meet}">MEET</a></td>
                       </tr>         
                     </tbody>
                   </table>
@@ -66,7 +70,7 @@
             </div>
             <div class="u-align-left u-container-style u-tab-pane u-white u-tab-pane-2" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
               <div class="u-container-layout u-container-layout-2">
-                <div class="u-expanded-width u-table u-table-responsive u-table-2">
+                <div class="u-expanded-width u-table u-table-responsive u-table-1" style="height:auto;">
                   <table class="u-table-entity">
                     <colgroup>
                       <col width="16.6%">
@@ -82,7 +86,7 @@
                         <td class="u-table-cell u-table-cell-32">Symptoms</td>
                         <td class="u-table-cell u-table-cell-33">Doctor's Name</td>
                         <td class="u-table-cell u-table-cell-34">Department</td>
-                        <td class="u-table-cell u-table-cell-35">Appointment Date</td>
+                        <td class="u-table-cell u-table-cell-35">Appointment Date and Time</td>
                         <td class="u-table-cell u-table-cell-36">Status</td>
                       </tr>
                       <tr th:each="appointment: ${pastAppointments}" style="height:65px;">
@@ -91,7 +95,7 @@
                         <td th:text="${appointment.name}" class="u-table-cell">Description</td>
                         <td th:text="${appointment.department}" class="u-table-cell">Description</td>
                         <td th:text="${appointment.date}" class="u-table-cell">Date</td>
-                        <td class="u-table-cell"></td>
+                        <td th:text="${appointment.status}" class="u-table-cell"></td>
                       </tr>                       
                     </tbody>
                   </table>

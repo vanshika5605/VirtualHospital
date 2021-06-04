@@ -30,7 +30,6 @@
 
 .u-section-1 .u-tab-pane-1 {
   background-image: none;
-  margin-bottom: 100px;
   margin-top: 0;
 }
 
@@ -39,9 +38,8 @@
 }
 
 .u-section-1 .u-table-1 {
-  height: 324px;
-  margin-bottom: 200px;
   margin-top: 0;
+  padding:15px;
 }
 
 .u-block-b876-42 {
@@ -77,20 +75,9 @@
   font-weight: 700;
 }
 
-.u-section-1 .u-tab-pane-2 {
-  background-image: none;
-  margin-bottom: 100px;
-  margin-top: 0;
-}
 
 .u-section-1 .u-container-layout-2 {
   padding: 30px;
-}
-
-.u-section-1 .u-table-2 {
-  height: 324px;
-  margin-bottom: 200px;
-  margin-top: 0;
 }
 
 .u-block-b876-134 {
@@ -155,7 +142,4 @@
     width: 340px;
   }
 
-  .u-section-1 .u-table-1 {
-    margin-bottom: -56px;
-  }
 }

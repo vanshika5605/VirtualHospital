@@ -7,8 +7,10 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Helpdesk</title>
+    <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/nicepage.css" media="screen">
-<link rel="stylesheet" href="/css/Helpdesk.css" media="screen">
+	<link rel="stylesheet" href="/css/Helpdesk.css" media="screen">
+	
     <script class="u-script" type="text/javascript" src="/js/jquery.js"></script>
     <script class="u-script" type="text/javascript" src="/js/nicepage.js"></script>
     <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
@@ -30,7 +32,43 @@
               </div>
               <div class="u-align-center u-container-style u-layout-cell u-palette-1-light-3 u-right-cell u-size-30 u-size-xs-60 u-layout-cell-2">
                 <div class="u-container-layout u-valign-top u-container-layout-2">
-                  <h2 class="u-text u-text-3">Chatbot</h2>
+                  <h3 class="u-text u-text-3">Chatbot</h3>
+                  <div id="username-page">
+			        <div class="username-page-container" style="margin-top:30px;">
+			            <h4 class="title">Username</h4>
+			            <form id="usernameForm" name="usernameForm">
+			                <div class="form-group">
+			                    <input th:value="${username}" type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" readonly="readonly"/>
+			                </div>
+			                <div class="form-group">
+			                    <button class="u-btn u-btn-submit u-button-style u-custom-font u-hover-palette-1-dark-1 u-palette-1-base u-btn-1" type="submit">Start Chatting</button>
+			                </div>
+			            </form>			            
+			        </div>
+			    </div>
+			    <div id="chat-page" class="hidden">
+			        <div class="chat-container" style="margin-top:10px;">
+			            <div class="chat-header">
+			                <h5><a th:href="@{/}">LEAVE</a></h5>
+			            </div>
+			            <div class="connecting">
+			                Connecting...
+			            </div>
+			            <ul id="messageArea">
+			
+			            </ul>
+			            <form id="messageForm" name="messageForm">
+			                <div class="form-group">
+			                    <div class="input-group clearfix">
+			                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+			                        <button style="margin-top:0;" class="u-btn u-btn-submit u-button-style u-custom-font u-hover-palette-1-dark-1 u-palette-1-base u-btn-1" type="submit">Send</button>
+			                    </div>
+			                </div>
+			                
+			            </form>
+			            
+			        </div>
+    			</div>
                 </div>
               </div>
             </div>
@@ -145,7 +183,9 @@
         </div>
       </div>
     </section>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/js/main.js"></script>
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-aeb0"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">© 2021&nbsp;&nbsp;<span class="u-icon u-icon-1"><svg class="u-svg-content" viewBox="0 0 169.063 169.063" x="0px" y="0px" style="width: 1em; height: 1em;"><g><path d="M122.406,0H46.654C20.929,0,0,20.93,0,46.655v75.752c0,25.726,20.929,46.655,46.654,46.655h75.752   c25.727,0,46.656-20.93,46.656-46.655V46.655C169.063,20.93,148.133,0,122.406,0z M154.063,122.407   c0,17.455-14.201,31.655-31.656,31.655H46.654C29.2,154.063,15,139.862,15,122.407V46.655C15,29.201,29.2,15,46.654,15h75.752   c17.455,0,31.656,14.201,31.656,31.655V122.407z"></path><path d="M84.531,40.97c-24.021,0-43.563,19.542-43.563,43.563c0,24.02,19.542,43.561,43.563,43.561s43.563-19.541,43.563-43.561   C128.094,60.512,108.552,40.97,84.531,40.97z M84.531,113.093c-15.749,0-28.563-12.812-28.563-28.561   c0-15.75,12.813-28.563,28.563-28.563s28.563,12.813,28.563,28.563C113.094,100.281,100.28,113.093,84.531,113.093z"></path><path d="M129.921,28.251c-2.89,0-5.729,1.17-7.77,3.22c-2.051,2.04-3.23,4.88-3.23,7.78c0,2.891,1.18,5.73,3.23,7.78   c2.04,2.04,4.88,3.22,7.77,3.22c2.9,0,5.73-1.18,7.78-3.22c2.05-2.05,3.22-4.89,3.22-7.78c0-2.9-1.17-5.74-3.22-7.78   C135.661,29.421,132.821,28.251,129.921,28.251z"></path>

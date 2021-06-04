@@ -34,6 +34,8 @@ public class Appointment {
 	private String department;
 	@Column(name = "symptoms", nullable = false, length = 200)
 	private String symptoms;
+	@Column(name = "status", nullable = false, length = 200)
+	private String status;
 	@Column(name = "date", nullable = false, length = 100)
 	// @Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
@@ -121,6 +123,14 @@ public class Appointment {
 
 	public void setPatient_gender(String patient_gender) {
 		this.patient_gender = patient_gender;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	

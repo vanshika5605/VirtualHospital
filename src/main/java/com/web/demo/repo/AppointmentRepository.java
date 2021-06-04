@@ -36,5 +36,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 	
 	@Query("SELECT a.department FROM Appointment a WHERE a.id=?1")
 	String findDepartment(Long id);
+	
+	@Query("SELECT a FROM Appointment a WHERE a.id=?1")
+	Appointment findByAppointmentId(Long id);
 }
 //

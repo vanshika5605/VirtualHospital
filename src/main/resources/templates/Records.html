@@ -25,7 +25,7 @@
     <section class="u-border-1 u-border-grey-75 u-clearfix u-white u-section-2" id="sec-2c02">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h3 class="u-text u-text-1">PRESCRIPTIONS</h3>
-        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+        <div class="u-expanded-width u-table u-table-responsive u-table-1" style="height:auto;">
           <table class="u-table-entity">
             <colgroup>
               <col width="20%">
@@ -58,56 +58,40 @@
     </section>
     <section class="u-border-1 u-border-grey-75 u-clearfix u-white u-section-3" id="sec-bc01">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h3 class="u-text u-text-1">SCANS AND TESTS</h3>
-        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+        <h3 class="u-text u-text-1">YOUR DOCUMENTS</h3>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1" style="height:auto;">
           <table class="u-table-entity">
             <colgroup>
+              <col width="15%">
               <col width="20%">
-              <col width="20%">
-              <col width="20%">
+              <col width="25%">
               <col width="20%">
               <col width="20%">
             </colgroup>
             <tbody class="u-custom-font u-font-playfair-display u-table-alt-palette-1-light-3 u-table-body">
               <tr style="height: 65px;">
-                <td class="u-table-cell u-table-cell-1">Report ID</td>
-                <td class="u-table-cell u-table-cell-2">Appointment ID</td>
-                <td class="u-table-cell u-table-cell-3">Date of Test</td>
-                <td class="u-table-cell u-table-cell-4">Recommended By<br>
+                <td class="u-table-cell u-table-cell-1">Document Name</td>
+                <td class="u-table-cell u-table-cell-2">Document Details</td>
+                <td class="u-table-cell u-table-cell-3">Date of Test/Report (optional)</td>
+                <td class="u-table-cell u-table-cell-4">Recommended By (optional)<br>
                 </td>
-                <td class="u-table-cell u-table-cell-5">Link to Report</td>
+                <td class="u-table-cell u-table-cell-5">Link to Download</td>
               </tr>
-              <tr style="height: 65px;">
-                <td class="u-table-cell">Row 1</td>
-                <td class="u-table-cell"></td>
-                <td class="u-table-cell">Description</td>
-                <td class="u-table-cell">Description</td>
-                <td class="u-table-cell">Description</td>
-              </tr>
-              <tr style="height: 65px;">
-                <td class="u-table-cell">Row 2</td>
-                <td class="u-table-cell"></td>
-                <td class="u-table-cell">Description</td>
-                <td class="u-table-cell">Description</td>
-                <td class="u-table-cell">Description</td>
-              </tr>
-              <tr style="height: 65px;">
-                <td class="u-table-cell">Row 3</td>
-                <td class="u-table-cell"></td>
-                <td class="u-table-cell">Description</td>
-                <td class="u-table-cell">Description</td>
-                <td class="u-table-cell">Description</td>
-              </tr>
-              <tr style="height: 65px;">
-                <td class="u-table-cell">Row 4</td>
-                <td class="u-table-cell"></td>
-                <td class="u-table-cell">Description</td>
-                <td class="u-table-cell">Description</td>
-                <td class="u-table-cell">Description</td>
-              </tr>
+              <tr th:each="doc: ${documents}" style="height: 65px;">
+                <td th:text="${doc.doc_name}"  class="u-table-cell">Document Name</td>
+                <td th:text="${doc.details}" class="u-table-cell">Document Details</td>
+                <td th:text="${doc.date}" class="u-table-cell">Date of Test/Report (optional)</td>
+                <td th:text="${doc.recommended_by}" class="u-table-cell">Recommended By (optional)</td>
+                <td class="u-table-cell">
+                	<a th:href="@{'/download/' + ${doc.doc_name}+'/db'}">Download</a>
+                </td>
+              </tr>              
             </tbody>
           </table>
         </div>
+        <div class="u-align-center">
+        	<a th:href="@{/patient/records/upload}" class="u-align-center u-btn u-button-style u-grey-90 u-btn-1">UPLOAD A DOCUMENT</a>
+      </div>
       </div>
     </section>
     

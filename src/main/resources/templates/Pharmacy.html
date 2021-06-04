@@ -25,37 +25,37 @@
               <div class="u-align-center u-black u-container-style u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-layout-cell-1" src="">
                 <div class="u-container-layout u-container-layout-1">
                   <h3 class="u-text u-text-1">Place your medicine orders here!</h3>
-                  <p class="u-text u-text-2">Fill the form given and relax, we will send your medicines.</p>
+                  <p class="u-text u-text-2">Fill the form given and relax, we will send your medicines.</p><br>
+                  <h5>Check your <a class="u-text u-text-2" href="/patient/pharmacy/order-history">Order History</a> here</h5>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-layout-cell u-palette-1-light-3 u-right-cell u-size-30 u-size-xs-60 u-layout-cell-2">
                 <div class="u-container-layout u-valign-top u-container-layout-2">
                   <h2 class="u-text u-text-3">Medicine Order</h2>
                   <div class="u-expanded-width u-form u-form-1">
-                    <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                    <form th:action="@{/patient/pharmacy/place-order}" th:object="${order}" method="POST" class="u-clearfix u-form-spacing-10 u-inner-form" style="padding: 10px" source="custom" name="form">
                       <div class="u-form-group u-form-name">
                         <label for="name-bea3" class="u-custom-font u-font-playfair-display u-label">Name</label>
-                        <input type="text" id="name-bea3" name="name" class="u-custom-font u-font-playfair-display u-input u-input-rectangle u-white" required="">
+                        <input th:value="${user.firstname +' '+user.lastname}" type="text" id="name-bea3" name="name" class="u-custom-font u-font-playfair-display u-input u-input-rectangle u-white" required readonly="readonly">
                       </div>
                       <div class="u-form-email u-form-group">
-                        <label for="email-bea3" class="u-custom-font u-font-playfair-display u-label">Patient ID</label>
-                        <input type="email" id="email-bea3" name="patientId" class="u-custom-font u-font-playfair-display u-input u-input-rectangle u-white" required="">
+                        <label for="patientId" class="u-custom-font u-font-playfair-display u-label">Patient ID</label>
+                        <input th:field="*{patient_id}" th:value="${user.id}" type="text" id="patientId" name="patientId" class="u-custom-font u-font-playfair-display u-input u-input-rectangle u-white" required="" readonly="readonly">
                       </div>
                       <div class="u-form-group u-form-group-3">
-                        <label for="text-e75c" class="u-custom-font u-font-playfair-display u-label">Prescription ID</label>
-                        <input type="text" placeholder="" id="text-e75c" name="presriptionId" class="u-custom-font u-font-playfair-display u-input u-input-rectangle u-white" required="required">
+                        <label for="prescription_id" class="u-custom-font u-font-playfair-display u-label">Prescription ID</label>
+                        <select th:field="*{prescription_id}" name="prescription_id" class="u-custom-font u-input u-input-rectangle u-white u-input-2" required="required">
+		                  <option th:each="pre: ${prescription}" th:text="${pre.id}" th:value="${pre.id}">id</option>
+		                </select>
                       </div>
                       <div class="u-form-group u-form-group-4">
                         <label for="text-e243" class="u-custom-font u-font-playfair-display u-label">Medicines to be omitted</label>
-                        <input type="text" placeholder="" id="text-e243" name="omitted" class="u-custom-font u-font-playfair-display u-input u-input-rectangle u-white">
+                        <input th:field="*{omitted}" type="text" placeholder="" id="text-e243" name="omitted" class="u-custom-font u-font-playfair-display u-input u-input-rectangle u-white">
                       </div>
                       <div class="u-align-left u-form-group u-form-submit">
                         <a href="#" class="u-btn u-btn-submit u-button-style u-custom-font u-font-playfair-display u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Place Order</a>
                         <input type="submit" value="submit" class="u-form-control-hidden">
-                      </div>
-                      <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                      <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                      <input type="hidden" value="" name="recaptchaResponse">
+                      </div>                      
                     </form>
                   </div>
                 </div>

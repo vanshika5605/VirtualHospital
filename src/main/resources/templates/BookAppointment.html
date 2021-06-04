@@ -22,7 +22,7 @@
         <h2 class="u-text u-text-1">Book Appointment</h2>
         <h6 class="u-text u-text-2">Patients can book online appointments with a specific doctor and can get prescription afterwards.</h6>
         <div class="u-align-center u-form u-form-1">
-          <form th:action="@{/patient/bookAppointment}" th:object="${appointment}" method="POST" class="u-clearfix u-form-spacing-26 u-form-vertical u-inner-form" style="padding: 10px" name="appointmentBook">
+          <form th:action="@{/patient/book-appointment}" th:object="${appointment}" method="POST" class="u-clearfix u-form-spacing-26 u-inner-form" style="padding: 10px" name="appointmentBook">
             <div class="u-form-group u-form-name">
               <label for="id" class="u-custom-font u-label u-label-1">Patient Id</label>
               <input type="text" th:field="*{patient_id}" id="id" name="id" class="u-custom-font u-input u-input-rectangle u-white u-input-1" readonly="readonly" th:value="${id}">

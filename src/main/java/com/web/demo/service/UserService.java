@@ -15,6 +15,9 @@ import com.web.demo.repo.DepartmentRepository;
 import com.web.demo.repo.RoleRepository;
 import com.web.demo.repo.UserRepository;
 import java.security.Principal;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
 @Service
 public class UserService {
 	
@@ -39,6 +42,11 @@ public class UserService {
 		Department dep = depRepo.findByDepartment(department);
 		user.addDepartment(dep);}
 		
+		Date dateOfBirth=user.getBirthday();
+		LocalDate d=dateOfBirth.toLocalDate();
+		Period period = Period.between(d, LocalDate.now());
+		user.setAge(period.getYears());
+		
 		userRepo.save(user);
 	}
 	
@@ -51,10 +59,12 @@ public class UserService {
 		List<DoctorDepartment> ans = new ArrayList<>();
 		for(User u:listDoctors) {
 			Long id=u.getId();
-			String name, department;
+			String name, department, photo,bio;
 			name=u.getFirstname()+" "+u.getLastname();
 			department = userRepo.getDepartmentOfDoctor(id);
-			DoctorDepartment d=new DoctorDepartment(id,name,department);
+			photo=u.getPhoto();
+			bio=u.getBio();
+			DoctorDepartment d=new DoctorDepartment(id,name,department,photo,bio);
 			ans.add(d);
 		}
 		return ans;

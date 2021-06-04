@@ -23,7 +23,7 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-align-center u-text u-text-1">REGISTER</h2>
         <div class="u-align-center u-form u-form-1">
-          <form th:action="@{/register}" th:object="${user}" method="POST" class="u-clearfix u-form-spacing-19 u-form-vertical u-inner-form" style="padding: 10px;" name="register">
+          <form th:action="@{/register}" th:object="${user}" method="POST" class="u-clearfix u-form-spacing-19 u-inner-form" style="padding: 10px;" name="register">
             <div class="u-form-group u-form-name">
               <label for="name-025f" class="u-custom-font u-label u-label-1">First Name</label>
               <input type="text" th:field="*{firstname}" id="name-025f" name="firstname" class="u-custom-font u-input u-input-rectangle u-white u-input-1" required>
@@ -41,8 +41,8 @@
               <input type="text" th:field="*{contact}" id="text-71b5" name="contact" class="u-custom-font u-input u-input-rectangle u-white u-input-4" required>
             </div>
             <div class="u-form-group u-form-group-5">
-              <label for="text-6dae" class="u-custom-font u-label u-label-5">Age</label>
-              <input type="text" th:field="*{age}" id="text-6dae" name="age" class="u-custom-font u-input u-input-rectangle u-white u-input-5" required>
+              <label for="dob" class="u-custom-font u-label u-label-5">Date Of Birth</label>
+              <input type="date" th:field="*{birthday}" id="dob" name="dob" class="u-custom-font u-input u-input-rectangle u-white u-input-5" required>
             </div>            
             <div class="u-form-group u-form-radiobutton u-form-group-8">
               <div class="u-form-radio-button-wrapper">
@@ -109,9 +109,13 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
               </div>
             </div>
+            <!-- <div class="u-form-group u-form-group-10">
+              <label for="photo" class="u-custom-font u-label u-label-11">Upload your image</label>
+              <input type="file" th:field="*{photo}" name="photo" id="photo" class="u-custom-font u-input u-input-rectangle u-white u-input-9" accept="photo/png, photo/jpeg, photo/jpg">
+            </div> -->
             <div class="u-form-group u-form-group-10">
               <label for="password" class="u-custom-font u-label u-label-11">Password</label>
-              <input type="password" th:field="*{password}" id="password" name="password" class="u-custom-font u-input u-input-rectangle u-white u-input-9">
+              <input type="password" th:field="*{password}" id="password" name="password" class="u-custom-font u-input u-input-rectangle u-white u-input-9" required>
             </div>
             <!--<div class="u-form-group u-form-group-10">
               <label for="confirmpassword" class="u-custom-font u-label u-label-11">Confirm Password</label>

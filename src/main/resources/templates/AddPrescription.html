@@ -19,10 +19,16 @@
   	<div th:replace="fragments/header"></div>
     <section class="u-clearfix u-palette-1-light-3 u-section-1" id="sec-8d33">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-1">Add Prescription</h2>
+      <div th:switch="${flag}">
+      <div th:case="true" class="message">
+	      <h2 class="u-text">Prescription has already been added.</h2>
+	      <a th:href="@{'/viewPrescription/' + ${id}}"><strong>View it here</strong></a>
+      </div>    
+      <div th:case="false">
+      <h2 class="u-text u-text-1">Add Prescription</h2>
         <!-- <h6 class="u-text u-text-2">Write a prescription for your patient here.</h6> -->
         <div class="u-align-center u-form u-form-1">
-          <form th:action="@{/addPrescription}" th:object="${prescription}" method="POST" class="u-clearfix u-form-spacing-26 u-form-vertical u-inner-form" style="padding: 10px" name="prescription">
+          <form th:action="@{/dcotor/add-prescription}" th:object="${prescription}" method="POST" class="u-clearfix u-form-spacing-26 u-inner-form" style="padding: 10px" name="prescription">
             <div class="u-form-group u-form-name">
               <label for="appointment_id" class="u-custom-font u-label u-label-1">Appointment Id</label>
               <input type="text" th:field="*{appointment_id}" id="appointment_id" name="appointment_id" class="u-custom-font u-input u-input-rectangle u-white u-input-1" readonly="readonly" th:value="${prescription.appointment_id}">
@@ -48,7 +54,9 @@
             </div>
           </form>
         </div>
+      </div>          
       </div>
+      </div>      
     </section>
     
     

@@ -1,3 +1,9 @@
+.message{
+	text-align: center;
+	justify-content:center;
+	align-content: center;
+}
+
 .u-section-1 .u-sheet-1 {
   min-height: 703px;
 }

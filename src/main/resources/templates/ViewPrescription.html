@@ -19,7 +19,7 @@
   <div th:replace="fragments/header"></div>
     <section class="u-clearfix u-palette-1-light-3 u-section-1" id="sec-a3a4">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-clearfix u-expanded-width u-gutter-8 u-layout-wrap u-layout-wrap-1">
+        <div class="u-clearfix u-expanded-width u-gutter-8 u-layout-wrap u-layout-wrap-1">      
           <div class="u-layout" style="">
             <div class="u-layout-row" style="">
               <div class="u-align-center u-black u-container-style u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-layout-cell-1" src="">
@@ -28,7 +28,14 @@
                   <p class="u-text u-text-2">Prescribed by: <span th:text="${doctor}"></span>&nbsp;</p>
                 </div>
               </div>
-              <div class="u-align-center u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-white u-layout-cell-2">
+              <div th:switch="${flag}">
+              <div th:case="false" class="u-align-center u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-white u-layout-cell-2">
+              	<div class="u-container-layout u-container-layout-2">
+              		<h3 class="u-text u-text-3">Prescription has</h3>
+              		<h3 class="u-text u-text-3">not been added yet.</h3>
+              	</div>              	
+              </div>
+              <div th:case="true" class="u-align-center u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-white u-layout-cell-2">
                 <div th:object="${prescription}" class="u-container-layout u-container-layout-2">
                   <h3 class="u-text u-text-3">Prescription Details</h3>
                   <h5 class="u-align-left u-text u-text-4">Prescription Date: <span th:text="${prescription.prescription_date}"></span></h5>
@@ -38,6 +45,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

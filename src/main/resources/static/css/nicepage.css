@@ -3,7 +3,9 @@
  * License https://froala.com/wysiwyg-editor/terms/
  * Copyright 2014-2020 Froala Labs
  */
-
+.u-form-group{
+	margin-bottom:20px;
+}
 .fr-clearfix::after {
   clear: both;
   display: block;
@@ -18058,7 +18060,7 @@ a.pswp__share--download:hover {
 @media (max-width: 767px) {
   .u-table-responsive {
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
   .u-table-responsive thead th,
   .u-table-responsive tfoot th,

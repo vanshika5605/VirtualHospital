@@ -50,7 +50,7 @@
                   <div class="u-container-style u-layout-cell u-right-cell u-size-40 u-white u-layout-cell-4">
                     <div class="u-container-layout u-container-layout-4">
                       <div class="u-form u-form-1">
-                        <form th:action="@{/bloodDonation}" th:object="${bloodDonation}" method="POST" class="u-clearfix u-form-spacing-24 u-form-vertical u-inner-form" style="padding: 10px" name="bloodDonation">
+                        <form th:action="@{/bloodDonation}" th:object="${bloodDonation}" method="POST" class="u-clearfix u-form-spacing-24 u-inner-form" style="padding: 10px" name="bloodDonation">
                           <div class="u-form-group u-form-name">
                             <label for="user_id" class="u-custom-font u-font-playfair-display u-label">User ID</label>
                             <input th:field="*{user_id}" type="text" id="user_id" name="user_id" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-custom-font u-font-playfair-display u-grey-5 u-input u-input-rectangle" required readonly="readonly" th:value="${id}">
@@ -61,7 +61,7 @@
                           </div>
                           <div class="u-form-date u-form-group u-form-group-3">
                             <label for="date-2554" class="u-custom-font u-font-playfair-display u-label">Available on</label>
-                            <input type="datetime-local" th:field="*{date}" placeholder="MM/DD/YYYY" id="date-2554" name="date" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-custom-font u-font-playfair-display u-grey-5 u-input u-input-rectangle" required>
+                            <input type="date" th:field="*{date}" placeholder="MM/DD/YYYY" id="date-2554" name="date" class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-custom-font u-font-playfair-display u-grey-5 u-input u-input-rectangle" required>
                           </div>
                           <div class="u-form-group u-form-submit">
                           	<button type="submit" class="u-btn u-btn-submit u-button-style u-custom-font u-font-playfair-display u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Register!</button>

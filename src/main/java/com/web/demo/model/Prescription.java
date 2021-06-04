@@ -1,6 +1,6 @@
 package com.web.demo.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 @Table(name = "prescriptions")
 public class Prescription {
@@ -18,7 +16,6 @@ public class Prescription {
 	@Column(name = "prescription_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "prescription_date", nullable = false)
 	private Date prescription_date;
 	@Column(name = "appointment_id", nullable = false)
@@ -27,7 +24,6 @@ public class Prescription {
 	private String diagnosis;
 	@Column(name = "medicines", nullable = false, length = 200)
 	private String medicines;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "nextvisit_date", nullable = false)
 	private Date nextvisit_date;
 	

@@ -33,4 +33,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Query("SELECT u.lastname FROM User u WHERE u.id=?1")
 	String findLastName(Long id);
+	
+	@Query("SELECT r.name FROM User u JOIN u.roles r WHERE u.id=?1")
+	String findRoleOfUser(Long id);
 }

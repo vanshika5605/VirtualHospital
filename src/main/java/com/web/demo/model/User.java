@@ -1,5 +1,6 @@
 package com.web.demo.model;
 
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="users")
@@ -34,12 +36,18 @@ public class User {
 	private String contact;
     @Column(name="age", nullable=false)
 	private int age;
+    @Column(name="birthday", nullable=false)
+	private Date birthday;
     @Column(name="gender", nullable=false)
 	private String gender;
     @Column(name="bloodgroup", nullable=false, length=3)
 	private String bloodgroup;
     @Column(name="address", nullable=false)
 	private String address;
+    @Column(name="bio", nullable=true, length=200)
+	private String bio;
+    @Column(name="photo", nullable = true, length=64)
+	public String photo;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
@@ -162,4 +170,36 @@ public class User {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
+	@Transient
+    public String getPhotosImagePath() {
+        if (photo == null || id == null) return null;
+         
+        return "/user-photos/" + id + "/" + photo;
+    }
+	
 }

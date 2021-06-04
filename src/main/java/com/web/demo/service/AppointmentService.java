@@ -37,6 +37,7 @@ public class AppointmentService {
 		appointment.setPatient_gender(gender);
 		appointment.setPatient_name(patientname);
 		appointment.setPatient_age(patientage);
+		appointment.setStatus("Pending");
 		repo.save(appointment);
 	}
 	

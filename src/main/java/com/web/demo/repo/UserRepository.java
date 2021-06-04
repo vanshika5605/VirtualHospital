@@ -36,4 +36,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Query("SELECT r.name FROM User u JOIN u.roles r WHERE u.id=?1")
 	String findRoleOfUser(Long id);
+	
+	Boolean existsByEmail(String email);
 }

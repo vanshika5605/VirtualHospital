@@ -1,6 +1,7 @@
 package com.web.demo.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,7 +74,11 @@ public class AppController {
 		return "Register";
 	}
 	@PostMapping("/register")
-	public String processRegister(User user, @RequestParam("role") String role, @RequestParam("department") String department) {
+	public String processRegister(@Valid User user, @RequestParam("role") String role, @RequestParam("department") String department) {
+		if (userRepo.existsByEmail(user.getEmail())) {
+			return "Error: Email is already in use!";
+		}
+		
 		service.saveUser(user, role, department);
 		
 		return "Login";

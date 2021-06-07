@@ -92,6 +92,8 @@ public class AppController {
 		model.addAttribute("user",user);
 		String dep=userRepo.getDepartmentOfDoctor(id);
 		model.addAttribute("dep",dep);
+		int countDonations=repo.bloodDonations(id);
+		model.addAttribute("donations", countDonations);
 		return "AccountDetails";
 	}
 	

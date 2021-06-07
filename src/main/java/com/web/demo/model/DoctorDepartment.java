@@ -11,14 +11,17 @@ public class DoctorDepartment {
 	public String photo;
 	@Column(name = "bio", nullable = true, length = 200)
 	private String bio;
+	@Column(name="meetId", nullable=false)
+	private String meetId;
 
 
-	public DoctorDepartment(Long id, String name, String department, String photo, String bio) {
+	public DoctorDepartment(Long id, String name, String department, String photo, String bio, String meetId) {
 		this.id = id;
 		this.name = name;
 		this.department = department;
 		this.photo = photo;
 		this.bio = bio;
+		this.meetId=meetId;
 	}
 
 	public Long getId() {
@@ -67,6 +70,14 @@ public class DoctorDepartment {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public String getMeetId() {
+		return meetId;
+	}
+
+	public void setMeetId(String meetId) {
+		this.meetId = meetId;
 	}
 
 }

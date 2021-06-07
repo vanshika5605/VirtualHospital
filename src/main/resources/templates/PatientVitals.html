@@ -6,7 +6,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Patients</title>
+    <title>Patient Vitals</title>
     <link rel="stylesheet" href="/css/nicepage.css" media="screen">
 <link rel="stylesheet" href="/css/Patients.css" media="screen">
     <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
@@ -19,36 +19,42 @@
   <div th:replace="fragments/header"></div>
     <section class="u-align-center u-clearfix u-section-1" id="sec-f236">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-1">MY PATIENTS</h2>
+        <h3 class="u-text u-text-1">BLOOD SUGAR</h3>
         <div class="u-expanded-width u-table u-table-responsive u-table-1" style="height:auto;">
           <table class="u-table-entity u-table-entity-1">
             <colgroup>
-              <col width="16.6%">
-              <col width="16.6%">
-              <col width="8.6%">
-              <col width="12.6%">
-              <col width="16.6%">
-              <col width="17%">
-              <col width="12%">
+              <col width="50%">
+              <col width="50%">              
             </colgroup>
             <tbody class="u-table-alt-palette-1-light-3 u-table-body">
               <tr style="height: 65px;">
-                <td class="u-table-cell u-table-cell-1">Patient ID</td>
-                <td class="u-table-cell u-table-cell-2">Patient Name</td>
-                <td class="u-table-cell u-table-cell-3">Age</td>
-                <td class="u-table-cell u-table-cell-3">Gender</td>
-                <td class="u-table-cell u-table-cell-4">Last Appointment</td>
-                <td class="u-table-cell u-table-cell-4">Symptoms Presented</td>
-                <td class="u-table-cell u-table-cell-4">Vitals</td>
+                <td class="u-table-cell u-table-cell-1">Date and Time</td>
+                <td class="u-table-cell u-table-cell-2">Details</td>
               </tr>
-              <tr th:each="patient: ${patients}" style="height: 65px;">
-                <td th:text="${patient.patient_id}" class="u-table-cell">Id</td>
-                <td th:text="${patient.patient_name}" class="u-table-cell">Name</td>
-                <td th:text="${patient.patient_age}" class="u-table-cell">Age</td>
-                <td th:text="${patient.patient_gender}" class="u-table-cell">Gender</td>
-                <td th:text="${patient.date}" class="u-table-cell">Last Appointment</td>
-                <td th:text="${patient.symptoms}" class="u-table-cell">Symptoms</td>
-                <td class="u-table-cell"><a th:href="@{'/doctor/check-vital/'+${patient.patient_id}}">CHECK VITALS</a></td>
+              <tr th:each="sugar: ${sugars}" style="height: 65px;">
+                <td th:text="${sugar.datetime}" class="u-table-cell">Id</td>
+                <td th:text="${sugar.details}" class="u-table-cell">Name</td>                
+              </tr>              
+            </tbody>
+          </table>
+        </div>
+      </div>
+       <div class="u-clearfix u-sheet u-sheet-1">
+        <h3 class="u-text u-text-1">BLOOD PRESSURE</h3>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1" style="height:auto;">
+          <table class="u-table-entity u-table-entity-1">
+            <colgroup>
+              <col width="50%">
+              <col width="50%">              
+            </colgroup>
+            <tbody class="u-table-alt-palette-1-light-3 u-table-body">
+              <tr style="height: 65px;">
+                <td class="u-table-cell u-table-cell-1">Date and Time</td>
+                <td class="u-table-cell u-table-cell-2">Details</td>
+              </tr>
+              <tr th:each="pressure: ${pressures}" style="height: 65px;">
+                <td th:text="${pressure.datetime}" class="u-table-cell">Id</td>
+                <td th:text="${pressure.details}" class="u-table-cell">Name</td>                
               </tr>              
             </tbody>
           </table>

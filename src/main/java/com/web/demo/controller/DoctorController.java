@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.web.demo.model.Appointment;
 import com.web.demo.model.Prescription;
 import com.web.demo.model.User;
+import com.web.demo.model.Vital;
 import com.web.demo.repo.AppointmentRepository;
 import com.web.demo.repo.PrescriptionRepository;
 import com.web.demo.repo.UserRepository;
+import com.web.demo.repo.VitalRepository;
 import com.web.demo.service.AppointmentService;
 import com.web.demo.service.UserService;
 
@@ -48,6 +50,9 @@ public class DoctorController {
 	
 	@Autowired
 	private AppointmentRepository appointmentRepo;
+	
+	@Autowired
+	private VitalRepository vitalRepo;
 	
 	@GetMapping("/doctor/dashboard")
 	public String doctorDashboard(Principal principal, Model model) {
@@ -133,5 +138,15 @@ public class DoctorController {
 		mailSender.send(message);
 		
 		return "DAppointmentHistory";
+	}
+	
+	@GetMapping("/doctor/check-vital/{id}")
+	public String checkVital(@PathVariable Long id, Model model) {
+		List<Vital> sugars=vitalRepo.getBloodSugars(id);
+		model.addAttribute("sugars", sugars);
+		
+		List<Vital> pressures=vitalRepo.getBloodPressures(id);
+		model.addAttribute("pressures", pressures);
+		return "PatientVitals";
 	}
 }

@@ -59,12 +59,13 @@ public class UserService {
 		List<DoctorDepartment> ans = new ArrayList<>();
 		for(User u:listDoctors) {
 			Long id=u.getId();
-			String name, department, photo,bio;
+			String name, department, photo,bio,meetId;
 			name=u.getFirstname()+" "+u.getLastname();
 			department = userRepo.getDepartmentOfDoctor(id);
 			photo=u.getPhoto();
 			bio=u.getBio();
-			DoctorDepartment d=new DoctorDepartment(id,name,department,photo,bio);
+			meetId=u.getEmail();
+			DoctorDepartment d=new DoctorDepartment(id,name,department,photo,bio,meetId);
 			ans.add(d);
 		}
 		return ans;

@@ -34,9 +34,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
-		.antMatchers("/", "/resources/**", "/css/**", "/img/**", "/js/**").permitAll()
-		.antMatchers("/login", "/resources/**", "/css/**", "/img/**", "/js/**").permitAll()
-		.antMatchers("/register", "/resources/**", "/css/**", "/img/**", "/js/**").permitAll()
+		.antMatchers("/", "/resources/**", "/css/**", "/images/**", "/js/**").permitAll()
+		.antMatchers("/login", "/resources/**", "/css/**", "/images/**", "/js/**").permitAll()
+		.antMatchers("/register", "/resources/**", "/css/**", "/images/**", "/js/**").permitAll()
 		.antMatchers("/patient/**").hasAuthority("PATIENT")
 		.antMatchers("/doctor/**").hasAuthority("DOCTOR")
 		.antMatchers("/websocketRTC").permitAll()

@@ -6,6 +6,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -18,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -34,10 +36,12 @@ import com.web.demo.model.Document;
 import com.web.demo.model.MedicineOrder;
 import com.web.demo.model.Prescription;
 import com.web.demo.model.User;
+import com.web.demo.model.Vital;
 import com.web.demo.repo.DocumentRepository;
 import com.web.demo.repo.MedicineOrderRepository;
 import com.web.demo.repo.PrescriptionRepository;
 import com.web.demo.repo.UserRepository;
+import com.web.demo.repo.VitalRepository;
 import com.web.demo.service.AppointmentService;
 import com.web.demo.service.UserService;
 
@@ -64,6 +68,9 @@ public class PatientController {
 	
 	@Autowired
 	private DocumentRepository documentRepo;
+	
+	@Autowired
+	private VitalRepository vitalRepo;
 
 	@GetMapping("/patient/dashboard")
 	public String patientDashboard(Principal principal, Model model) {
@@ -256,4 +263,39 @@ public class PatientController {
 		return "OrderHistory";
 	}
 
+	@GetMapping("/patient/vitals")
+	public String vitals(Principal principal, Model model) {
+		Long id=service.returnId(principal);
+		List<Vital> sugars=vitalRepo.getBloodSugars(id);
+		model.addAttribute("sugars", sugars);
+		
+		List<Vital> pressures=vitalRepo.getBloodPressures(id);
+		model.addAttribute("pressures", pressures);
+		return "Vitals";
+	}
+	
+	@PostMapping("/save/sugar")
+	public RedirectView saveSugar(HttpServletRequest request, Principal principal) {
+		String details=request.getParameter("meal")+": "+request.getParameter("sugar");
+		LocalDateTime now=LocalDateTime.now().withNano(0).withSecond(0);
+		Long id=service.returnId(principal);
+		
+		Vital vital=new Vital(id,"Sugar",details,now);
+		vitalRepo.save(vital);
+		
+		return new RedirectView("/patient/vitals", true);
+	}
+	@PostMapping("/save/bp")
+	public RedirectView saveBP(HttpServletRequest request, Principal principal) {
+		String details=request.getParameter("systolic")+"/"+request.getParameter("diastolic")+" mm Hg";
+		String t=request.getParameter("date");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+		LocalDateTime dateTime = LocalDateTime.parse(t, formatter);
+		Long id=service.returnId(principal);
+		
+		Vital vital=new Vital(id,"Blood Pressure",details,dateTime);
+		vitalRepo.save(vital);
+		
+		return new RedirectView("/patient/vitals", true);
+	}
 }

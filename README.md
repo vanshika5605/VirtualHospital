@@ -35,6 +35,10 @@ The aim of this project is to make the interaction of patients and doctors conve
 - Online prescription creation system
 - A tab to view all patients, their recent appointments, and their vitals
 
+<img src="user-photos/Doctor1.png">
+
+<img src="user-photos/Doctor2.png">
+
 ## Technologies Used
 
 HTML, CSS, Bootstrap, JavaScript, Spring Boot, MySQL

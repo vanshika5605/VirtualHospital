@@ -1,6 +1,7 @@
 # Virtual Hospital
 
 Provides a seamless portal for doctors and patients to engage virtually.
+![Home - Google Chrome 08-06-2021 15_50_12](https://user-images.githubusercontent.com/58625189/121169499-b2b50700-c871-11eb-9648-9ba36467792a.png)
 
 ## About the Project
 The aim of this project is to make the interaction of patients and doctors convenient and more organized. This platform is built keeping in mind the problems and hassles one has to face while using any medical facility via hospitals. Living in the post-covid era, the need for this ever more - a place where you can get diagnosed and get help without stepping out of the comfort of your house.

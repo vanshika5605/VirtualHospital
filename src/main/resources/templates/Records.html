@@ -37,10 +37,10 @@
             <tbody class="u-custom-font u-font-playfair-display u-table-alt-palette-1-light-3 u-table-body">
               <tr style="height: 65px;">
                 <td class="u-table-cell u-table-cell-1">Prescription ID</td>
-                <td class="u-table-cell u-table-cell-2">Appointment ID</td>
-                <td class="u-table-cell u-table-cell-3">Date of generation</td>
+                <td class="u-table-cell u-table-cell-1">Appointment ID</td>
+                <td class="u-table-cell u-table-cell-1">Date of generation</td>
                 <!-- <td class="u-table-cell u-table-cell-4">Doctor </td> -->               
-                <td class="u-table-cell u-table-cell-5">View Prescription</td>
+                <td class="u-table-cell u-table-cell-1">View Prescription</td>
               </tr>
               <tr th:each="prescription: ${prescriptions}" style="height: 65px;">
                 <td th:text="${prescription.id}" class="u-table-cell">P ID</td>
@@ -71,11 +71,11 @@
             <tbody class="u-custom-font u-font-playfair-display u-table-alt-palette-1-light-3 u-table-body">
               <tr style="height: 65px;">
                 <td class="u-table-cell u-table-cell-1">Document Name</td>
-                <td class="u-table-cell u-table-cell-2">Document Details</td>
-                <td class="u-table-cell u-table-cell-3">Date of Test/Report (optional)</td>
-                <td class="u-table-cell u-table-cell-4">Recommended By (optional)<br>
+                <td class="u-table-cell u-table-cell-1">Document Details</td>
+                <td class="u-table-cell u-table-cell-1">Date of Test/Report (optional)</td>
+                <td class="u-table-cell u-table-cell-1">Recommended By (optional)<br>
                 </td>
-                <td class="u-table-cell u-table-cell-5">Link to Download</td>
+                <td class="u-table-cell u-table-cell-1">Download/Delete</td>
               </tr>
               <tr th:each="doc: ${documents}" style="height: 65px;">
                 <td th:text="${doc.doc_name}"  class="u-table-cell">Document Name</td>
@@ -83,7 +83,8 @@
                 <td th:text="${doc.date}" class="u-table-cell">Date of Test/Report (optional)</td>
                 <td th:text="${doc.recommended_by}" class="u-table-cell">Recommended By (optional)</td>
                 <td class="u-table-cell">
-                	<a th:href="@{'/download/' + ${doc.doc_name}+'/db'}">Download</a>
+                	<a th:href="@{'/download/' + ${doc.doc_name}+'/db'}">DOWNLOAD</a><a> |</a>
+                	<a th:href="@{'/delete/' + ${doc.doc_name}+'/db'}">DELETE</a>
                 </td>
               </tr>              
             </tbody>

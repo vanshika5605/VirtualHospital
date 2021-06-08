@@ -74,9 +74,11 @@ public class AppController {
 		return "Register";
 	}
 	@PostMapping("/register")
-	public String processRegister(@Valid User user, @RequestParam("role") String role, @RequestParam("department") String department) {
-		if (userRepo.existsByEmail(user.getEmail())) {
-			return "Error: Email is already in use!";
+	public String processRegister(@Valid User user, @RequestParam("role") String role, @RequestParam("department") String department, Model model) {
+		if (userRepo.existsByEmail(user.getEmail())) {			
+			String msg= "Error: Email is already in use!";
+			model.addAttribute("error", msg);
+			return "Register";
 		}
 		
 		service.saveUser(user, role, department);

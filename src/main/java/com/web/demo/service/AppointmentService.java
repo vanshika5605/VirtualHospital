@@ -62,4 +62,7 @@ public class AppointmentService {
 		}
 		return list;
 	}
+	public void deleteAppointment(Long id) {
+		repo.deleteById(id);
+	}
 }

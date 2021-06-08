@@ -41,7 +41,8 @@
                       <col width="12.6%">
                       <col width="16.6%">
                       <col width="17%">
-                      <col width="10%">
+                      <col width="5%">
+                      <col width="5%">
                     </colgroup>
                     <tbody class="u-custom-font u-font-playfair-display u-table-alt-palette-1-light-3 u-table-body">
                       <tr style="height: 65px;">
@@ -52,6 +53,7 @@
                         <td class="u-table-cell u-table-cell-1">Appointment Date and Time</td>
                         <td class="u-table-cell u-table-cell-1">Status</td>
                         <td class="u-table-cell u-table-cell-1">Call Link</td>
+                        <td class="u-table-cell u-table-cell-1">Cancel</td>
                       </tr>
                       <tr th:each="appointment: ${upcomingAppointments}" style="height:65px;">
                         <td th:text="${appointment.id}" class="u-table-cell">Id</td>
@@ -62,6 +64,8 @@
                         <td th:text="${appointment.status}" class="u-table-cell"></td>
                         <td class="u-table-cell"><a
 						th:href="@{/meet}" title="Get doctor's meet id from doctor's panel.">MEET</a></td>
+						<td class="u-table-cell"><a
+						th:href="@{'/patient/appointment/cancel/'+${appointment.id}}" >CANCEL</a></td>
                       </tr>         
                     </tbody>
                   </table>

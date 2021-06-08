@@ -29,19 +29,19 @@
                 </div>
               </div>
               <div th:switch="${flag}">
-              <div th:case="false" class="u-align-center u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-white u-layout-cell-2">
-              	<div class="u-container-layout u-container-layout-2">
+              <div th:case="false" class="u-align-center u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-white u-layout-cell-1">
+              	<div class="u-container-layout u-container-layout-1">
               		<h3 class="u-text u-text-3">Prescription has</h3>
               		<h3 class="u-text u-text-3">not been added yet.</h3>
               	</div>              	
               </div>
-              <div th:case="true" class="u-align-center u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-white u-layout-cell-2">
-                <div th:object="${prescription}" class="u-container-layout u-container-layout-2">
+              <div th:case="true" class="u-align-center u-container-style u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-white u-layout-cell-1">
+                <div th:object="${prescription}" class="u-container-layout u-container-layout-1">
                   <h3 class="u-text u-text-3">Prescription Details</h3>
                   <h5 class="u-align-left u-text u-text-4">Prescription Date: <span th:text="${prescription.prescription_date}"></span></h5>
-                  <h5 class="u-align-left u-text u-text-5">Diagnosis: <span th:text="${prescription.diagnosis}"></span></h5>
-                  <h5 class="u-align-left u-text u-text-6">Medicines: <span th:text="${prescription.medicines}"></span></h5>
-                  <h5 class="u-align-left u-text u-text-7">Suggested Next Visit On: <span th:text="${prescription.nextvisit_date}"></span></h5>
+                  <h5 class="u-align-left u-text u-text-4">Diagnosis: <span th:text="${prescription.diagnosis}"></span></h5>
+                  <h5 class="u-align-left u-text u-text-4">Medicines: <span th:text="${prescription.medicines}"></span></h5>
+                  <h5 class="u-align-left u-text u-text-4">Suggested Next Visit On: <span th:text="${prescription.nextvisit_date}"></span></h5>
                 </div>
               </div>
             </div>

@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.web.demo.model.Appointment;
 import com.web.demo.model.Prescription;
@@ -73,12 +74,12 @@ public class DoctorController {
 	}
 	
 	@PostMapping("/doctor/change-appointment-status/{id}")
-	public String changeStatus(@PathVariable(name="id") Long id, HttpServletRequest request) {
+	public RedirectView changeStatus(@PathVariable(name="id") Long id, HttpServletRequest request) {
 		String status=request.getParameter("status");
 		Appointment appointment=appointmentRepo.findByAppointmentId(id);
 		appointment.setStatus(status);
 		appointmentRepo.save(appointment);
-		return "DAppointmentHistory";
+		return new RedirectView("/doctor/appointment-history", true);
 	}
 	
 	@GetMapping("/doctor/patients")
@@ -103,10 +104,12 @@ public class DoctorController {
 	}
 	
 	@PostMapping("/doctor/add-prescription")
-	public String savePrescription(Prescription prescription, HttpServletRequest request) throws ParseException, MessagingException, UnsupportedEncodingException{
+	public RedirectView savePrescription(Prescription prescription, HttpServletRequest request) throws ParseException, MessagingException, UnsupportedEncodingException{
 		prescriptionRepo.save(prescription);
 		Long appointment_id=prescription.getAppointment_id();
 		Appointment appointment=appointmentRepo.findByAppointmentId(appointment_id);
+		appointment.setStatus("Prescription given");
+		appointmentRepo.save(appointment);
 		Long patientId=appointment.getPatient_id();
 		User user=userRepo.findUserById(patientId);
 		//send out an email
@@ -137,7 +140,7 @@ public class DoctorController {
 		
 		mailSender.send(message);
 		
-		return "DAppointmentHistory";
+		return new RedirectView("/doctor/appointment-history", true);
 	}
 	
 	@GetMapping("/doctor/check-vital/{id}")

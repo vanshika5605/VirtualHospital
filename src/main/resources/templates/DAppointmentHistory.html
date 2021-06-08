@@ -120,7 +120,7 @@
                         <td th:text="${appointment.date}" class="u-table-cell">Date</td>
                         <td th:text="${appointment.status}" class="u-table-cell">Status</td>
                         <td>
-                        <form th:action="@{'/changeAppointmentStatus/'+${appointment.id}}" method="POST">
+                        <form th:action="@{'/doctor/change-appointment-status/'+${appointment.id}}" method="POST">
                         	<select name="status" class="u-custom-font u-input u-input-rectangle u-white u-input-5" required>
 			                  <option value="Pending">Pending</option>
 			                  <option value="Completed">Completed</option>
@@ -129,7 +129,7 @@
 			                <button type="submit">Change</button>
                         </form></td>
                         <td class="u-table-cell"><a
-						th:href="@{'/addPrescription/' + ${appointment.id}}">ADD</a>
+						th:href="@{'/doctor/add-prescription/' + ${appointment.id}}">ADD</a>
 						&nbsp; <a 
 						th:href="@{'/viewPrescription/' + ${appointment.id}}">VIEW</a></td>
                       </tr>                        

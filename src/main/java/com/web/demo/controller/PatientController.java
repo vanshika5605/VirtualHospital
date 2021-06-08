@@ -26,6 +26,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
@@ -93,7 +94,7 @@ public class PatientController {
 	}
 
 	@PostMapping("/patient/book-appointment")
-	public String processAppointment(Appointment appointment, @RequestParam("doctor_id") Long id,
+	public RedirectView processAppointment(Appointment appointment, @RequestParam("doctor_id") Long id,
 			HttpServletRequest request, Principal principal) throws MessagingException, UnsupportedEncodingException {
 		Long p_id = service.returnId(principal);
 		bookService.saveAppointment(appointment, id, p_id);
@@ -127,7 +128,7 @@ public class PatientController {
 
 		mailSender.send(message);
 
-		return "AppointmentHistory";
+		return new RedirectView("/patient/appointment-history", true);
 	}
 
 	@GetMapping("/patient/appointment-history")
@@ -140,6 +141,12 @@ public class PatientController {
 		model.addAttribute("upcomingAppointments", upcoming);
 
 		return "AppointmentHistory";
+	}
+	
+	@RequestMapping("/patient/appointment/cancel/{id}")
+	public RedirectView cancelAppointment(@PathVariable("id") Long id) {
+		bookService.deleteAppointment(id);
+		return new RedirectView("/patient/appointment-history", true);
 	}
 
 	@GetMapping("/patient/records")
@@ -165,7 +172,7 @@ public class PatientController {
 		doc.setDetails(request.getParameter("details"));
 		doc.setDoc_name(request.getParameter("recommended_by"));
 		doc.setDate(request.getParameter("date"));
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		String fileName = id+"_"+StringUtils.cleanPath(file.getOriginalFilename());
 		doc.setDoc_name(fileName);
 		try {
 			doc.setFile(file.getBytes());
@@ -183,6 +190,14 @@ public class PatientController {
 				.contentType(MediaType.parseMediaType("application/octet-stream"))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
 				.body(document.getFile());
+	}
+	
+	@RequestMapping("/delete/{fileName:.+}/db")
+	public RedirectView deleteFromDB(@PathVariable String fileName) {
+		Document document = documentRepo.findByDocName(fileName);
+		Long id=document.getId();
+		documentRepo.deleteById(id);
+		return new RedirectView("/patient/records", true);
 	}
 
 	@GetMapping("/patient/doctors-available")
@@ -207,7 +222,7 @@ public class PatientController {
 	}
 
 	@PostMapping("/patient/pharmacy/place-order")
-	public String placeOrder(MedicineOrder order) throws MessagingException, UnsupportedEncodingException {
+	public RedirectView placeOrder(MedicineOrder order) throws MessagingException, UnsupportedEncodingException {
 		LocalDate d = LocalDate.now();
 		LocalTime t = LocalTime.now();
 		order.setDate(d);
@@ -252,7 +267,7 @@ public class PatientController {
 
 		mailSender.send(message);
 
-		return "OrderHistory";
+		return new RedirectView("/patient/pharmacy/order-history", true);
 	}
 
 	@GetMapping("/patient/pharmacy/order-history")
@@ -261,6 +276,12 @@ public class PatientController {
 		List<MedicineOrder> orders = medicineRepo.getAllOrdersForAPatient(id);
 		model.addAttribute("orders", orders);
 		return "OrderHistory";
+	}
+	
+	@RequestMapping("/order/cancel/{id}")
+	public RedirectView cancelOrder(@PathVariable("id") Long id) {
+		medicineRepo.deleteById(id);
+		return new RedirectView("/patient/pharmacy/order-history", true);
 	}
 
 	@GetMapping("/patient/vitals")

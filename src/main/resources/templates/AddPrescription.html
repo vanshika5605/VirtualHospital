@@ -6,7 +6,7 @@
     <meta name="keywords" content="Book Appointment">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>BookAppointment</title>
+    <title>Add Prescription</title>
     <link rel="stylesheet" href="/css/nicepage.css" media="screen">
 <link rel="stylesheet" href="/css/Form.css" media="screen">
     <script class="u-script" type="text/javascript" src="/js/jquery.js"></script>
@@ -28,7 +28,7 @@
       <h2 class="u-text u-text-1">Add Prescription</h2>
         <!-- <h6 class="u-text u-text-2">Write a prescription for your patient here.</h6> -->
         <div class="u-align-center u-form u-form-1">
-          <form th:action="@{/dcotor/add-prescription}" th:object="${prescription}" method="POST" class="u-clearfix u-form-spacing-26 u-inner-form" style="padding: 10px" name="prescription">
+          <form th:action="@{/doctor/add-prescription}" th:object="${prescription}" method="POST" class="u-clearfix u-form-spacing-26 u-inner-form" style="padding: 10px" name="prescription">
             <div class="u-form-group u-form-name">
               <label for="appointment_id" class="u-custom-font u-label u-label-1">Appointment Id</label>
               <input type="text" th:field="*{appointment_id}" id="appointment_id" name="appointment_id" class="u-custom-font u-input u-input-rectangle u-white u-input-1" readonly="readonly" th:value="${prescription.appointment_id}">

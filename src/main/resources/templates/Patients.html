@@ -8,7 +8,7 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Patients</title>
     <link rel="stylesheet" href="/css/nicepage.css" media="screen">
-<link rel="stylesheet" href="/css/Patients.css" media="screen">
+<link rel="stylesheet" href="/css/OrderHistory.css" media="screen">
     <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
@@ -34,12 +34,12 @@
             <tbody class="u-table-alt-palette-1-light-3 u-table-body">
               <tr style="height: 65px;">
                 <td class="u-table-cell u-table-cell-1">Patient ID</td>
-                <td class="u-table-cell u-table-cell-2">Patient Name</td>
-                <td class="u-table-cell u-table-cell-3">Age</td>
-                <td class="u-table-cell u-table-cell-3">Gender</td>
-                <td class="u-table-cell u-table-cell-4">Last Appointment</td>
-                <td class="u-table-cell u-table-cell-4">Symptoms Presented</td>
-                <td class="u-table-cell u-table-cell-4">Vitals</td>
+                <td class="u-table-cell u-table-cell-1">Patient Name</td>
+                <td class="u-table-cell u-table-cell-1">Age</td>
+                <td class="u-table-cell u-table-cell-1">Gender</td>
+                <td class="u-table-cell u-table-cell-1">Last Appointment</td>
+                <td class="u-table-cell u-table-cell-1">Symptoms Presented</td>
+                <td class="u-table-cell u-table-cell-1">Vitals</td>
               </tr>
               <tr th:each="patient: ${patients}" style="height: 65px;">
                 <td th:text="${patient.patient_id}" class="u-table-cell">Id</td>

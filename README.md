@@ -1,5 +1,7 @@
 # Virtual Hospital
 
+[Project Report](Internship_Project_Report-Vanshika Agrawal.pdf)
+
 Provides a seamless portal for doctors and patients to engage virtually.
 
 ## About the Project
